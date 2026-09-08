@@ -30,6 +30,7 @@
   - [社区机制](#社区机制)
   - [如何参与](#如何参与)
   - [命令行工具](#命令行工具)
+  - [相关论文](#相关论文)
   - [许可](#许可)
   - [灵感来源](#灵感来源)
 
@@ -179,6 +180,17 @@ python tools/summarize.py
 更多用法见 [AGENTS.md](AGENTS.md) 与各工具 `--help`。
 
 ---
+
+## 相关论文
+
+| # | 论文 | 笔记 |
+|---|---|---|
+| 1 | [Prompt Compression for Large Language Models: A Survey](https://aclanthology.org/2025.naacl-long.368/) | 硬/软压缩全景分类，Stew 在此定位为“硬过滤+进化搜索+内容寻址锅”。 |
+| 2 | [Compressing Prompts for Accelerated Inference of Large Language Models](https://aclanthology.org/2023.emnlp-main.825/) (LLMLingua) | 小模型估计困惑度过滤低信息 token，最高 20 倍压缩；`cook-v1` demo 与此同族，但 Stew 叠加多代进化与盲测。 |
+| 3 | [Data Distillation for Efficient and Faithful Task-Agnostic Prompt Compression](https://aclanthology.org/2024.findings-acl.57/) (LLMLingua-2) | 将 LLMLingua 蒸馏为轻量分类器，更快更忠实；可直接作为 `STEW_COMPRESSOR_CMD`。 |
+| 4 | [Learning to Compress Prompts with Gist Tokens](https://openreview.net/forum?id=2DtxPCL3T5) (GIST) | 把提示词压为若干 `<gist>` token，不可读但等效——“乱码有效”的软压缩先例，印证模型绑定与 `tasting.yaml` 三绑定。 |
+| 5 | [Generalized Prompt Compression for Large Language Models](https://arxiv.org/abs/2408.03094) (500xCompressor) | 编码器-解码器将提示压为 1–16 个 KV token，最高 480 倍压缩；只能用盲测评判，呼应 A/I 原则。 |
+| 6 | [Optimizing generative AI by backpropagating language model feedback](https://www.nature.com/articles/s41586-025-08661-4) / [Automatic “Differentiation” via Text](https://arxiv.org/abs/2406.07496) (TextGrad) | 文本梯度反向传播 `TGD`，以 `loss.backward()` 优化提示词/解/代码；为 Stew 提供梯度式进化算子。 |
 
 ## 许可
 

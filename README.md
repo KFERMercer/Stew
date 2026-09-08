@@ -28,6 +28,7 @@ A Chinese doorway lives in [README.zh-CN.md](README.zh-CN.md).
   - [Community mechanics](#community-mechanics)
   - [Getting involved](#getting-involved)
   - [Command-line tools](#command-line-tools)
+  - [Related Work](#related-work)
   - [License](#license)
   - [Inspiration](#inspiration)
 
@@ -153,6 +154,17 @@ python tools/summarize.py registry
 ```
 
 See [AGENTS.md](AGENTS.md) and each tool's `--help` for more.
+
+## Related Work
+
+| # | Paper | Notes |
+|---|---|---|
+| 1 | [Prompt Compression for Large Language Models: A Survey](https://aclanthology.org/2025.naacl-long.368/) | Taxonomy of hard vs. soft compression that Stew inherits; frames Stew as *hard-filtering + evolutionary search* with content-addressed governance. |
+| 2 | [Compressing Prompts for Accelerated Inference of Large Language Models](https://aclanthology.org/2023.emnlp-main.825/) (LLMLingua) | Hard-prompt filtering with a small LM estimating token perplexity/self-information;Stew's `cook-v1` demo compressor is the same family, but Stew drops readability and adds blind tasting. |
+| 3 | [Data Distillation for Efficient and Faithful Task-Agnostic Prompt Compression](https://aclanthology.org/2024.findings-acl.57/) (LLMLingua-2) | Distillation-trained classifier for token keep/drop; shows task-agnostic hard compression can be learned — a drop-in `STEW_COMPRESSOR_CMD`. |
+| 4 | [Learning to Compress Prompts with Gist Tokens](https://openreview.net/forum?id=2DtxPCL3T5) (GIST) | Soft-prompt: compresses a prompt into `\<gist\>` tokens; *gibberish yet effective* — the direct precedent for Stew's "resonance profile" claim and model-bound `tasting.yaml`. |
+| 5 | [Generalized Prompt Compression for Large Language Models](https://arxiv.org/abs/2408.03094) (500xCompressor) | Encoder-decoder that compresses prompts into KV-memories up to 480× (500× name); proves extreme soft-compression is viable and must be evaluated by measurement, not reading — Stew's `A` principle. |
+| 6 | [Optimizing generative AI by backpropagating language model feedback](https://www.nature.com/articles/s41586-025-08661-4) / [Automatic “Differentiation” via Text](https://arxiv.org/abs/2406.07496) (TextGrad) | Textual Gradient Descent (`TGD`): `loss.backward()` via LLM feedback; gives Stew a principled optimizer for the `compress ↔ evaluate` loop beyond demo truncation. |
 
 ## License
 
