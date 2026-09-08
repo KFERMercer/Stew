@@ -1,0 +1,60 @@
+schema: "stew.metadata@1.0"
+id: STW-0000
+slug: root-broth
+title: "Root Broth (bootstrap seed)"
+status: seed
+state_history:
+  - at: 2026-09-08T00:00:00Z
+    from: none
+    to: seed
+    by: keeper-bot
+    ref: bootstrap-commit
+
+# ---------------------------------------------------------------
+# Content body. `file` points at an IMMUTABLE snapshot (stew.gen-NNN.txt).
+# The pointer may change between generations; the blob never does.
+# ---------------------------------------------------------------
+content:
+  file: stew.gen-000.txt
+  media_type: text/plain
+  charset: utf-8
+  bytes: 1369
+  sha256: 4f5870ef2662a0b08b9f9a4326fbfb378e430dd6d8b00a070322096dd1c4ff59
+  human_readable: true
+  visual_class: readable
+  token_estimate:
+    tokenizer: cl100k_base
+    tokens: 320
+    note: "Rough estimate from word count; recompute before merging a proposal."
+
+# ---------------------------------------------------------------
+# Lineage. Append-only. `generation` must equal the number of
+# stew.gen-*.txt snapshots minus one. Multi-parent "hybrid" stews
+# list every parent here.
+# ---------------------------------------------------------------
+lineage:
+  generation: 0
+  parents: []
+  root_seed:
+    source_type: seed-broth
+    provenance_note: "Hand-authored bootstrap seed; the first item ladled into the pot."
+  compression_ops_total: 0
+
+# Benchmarks are maintained by keeper-bot (summarize.py). Do not hand-edit.
+benchmarks: []
+
+safety:
+  screen: pending
+  screen_ref: null
+  redteam_probes: 0
+  disclosures: []
+
+legal:
+  source_license: "MIT-0"
+  privacy_screened: true
+
+community:
+  curator: "@mercer"
+  tasting_count: 0
+  forks: []
+  tags: [bootstrap, seed, smoke-test]

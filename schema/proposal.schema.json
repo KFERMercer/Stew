@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/mercer/stew/schema/proposal.schema.json",
+  "title": "Stew proposal (proposal.yaml)",
+  "description": "Community submission pushing a new stew, a new generation, or a hybrid into the pot.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "kind", "curator", "created_at", "summary", "method", "attachments"],
+  "properties": {
+    "schema": { "const": "stew.proposal@1.0" },
+    "kind": { "enum": ["new-stew", "new-generation", "hybrid"] },
+    "curator": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "summary": { "type": "string" },
+    "method": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["protocol", "compressor", "dataset", "reproducibility"],
+      "properties": {
+        "protocol": { "enum": ["cook-v1"] },
+        "compressor": { "type": "string" },
+        "dataset": { "type": "string" },
+        "reproducibility": { "type": "boolean" }
+      }
+    },
+    "attachments": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stew", "self_tasting", "logs"],
+      "properties": {
+        "stew": { "type": "string" },
+        "self_tasting": { "type": "string" },
+        "logs": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

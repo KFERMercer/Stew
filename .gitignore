@@ -1,0 +1,10 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Local scratch (tasting drafts, logs never meant for the pot)
+tastings/*.local.yaml
+*.tmp

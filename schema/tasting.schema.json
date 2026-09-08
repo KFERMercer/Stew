@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/mercer/stew/schema/tasting.schema.json",
+  "title": "Stew tasting report (tasting.yaml)",
+  "description": "Independent blind-test report. MUST bind stew_sha256, model, and prompt_placement; otherwise the report is meaningless for unreadable prompts.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "tasting_id", "stew", "stew_sha256", "taster", "model", "prompt_placement", "method", "results", "notes"],
+  "properties": {
+    "schema": { "const": "stew.tasting@1.0" },
+    "tasting_id": { "type": ["string", "null"] },
+    "stew": { "type": "string", "pattern": "^STW-\\d{4}$" },
+    "stew_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "taster": { "type": "string" },
+    "model": { "type": "string" },
+    "prompt_placement": { "enum": ["system", "user", "assistant-last"] },
+    "method": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tasks", "n_samples", "baseline", "harness"],
+      "properties": {
+        "tasks": { "type": "array", "items": { "type": "string" } },
+        "n_samples": { "type": "integer", "minimum": 1 },
+        "baseline": { "type": "string" },
+        "harness": { "type": "string" }
+      }
+    },
+    "results": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["task", "metric", "baseline", "stew", "delta", "ci"],
+        "properties": {
+          "task": { "type": "string" },
+          "metric": { "type": "string" },
+          "baseline": { "type": "number" },
+          "stew": { "type": "number" },
+          "delta": { "type": "number" },
+          "ci": { "type": "string" }
+        }
+      }
+    },
+    "notes": { "type": "string" }
+  }
+}
