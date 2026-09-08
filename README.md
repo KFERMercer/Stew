@@ -14,8 +14,6 @@ That is the experiment. Repeated compression strips away task-irrelevant languag
 
 This repository is the shared **pot** for such unreadable-but-effective artifacts: shareable, auditable, lineage-tracked. The stew itself may be opaque; everything around it must be crystal clear.
 
-A Chinese doorway lives in [README.zh-CN.md](README.zh-CN.md).
-
 ## Table of contents
 
 - [🍲 Stew](#-stew)
