@@ -30,12 +30,11 @@ CLI scripts.
 Thin wrappers so mainstream agent runtimes can consume and contribute stews
 inside their own UI.
 
-- [ ] **Claude Code** — `CLAUDE.md` hook + optional skill pack that loads
-      `SKILL.md` and exposes search/fetch via the MCP server.
-- [ ] **Cursor** — rules entry (`.cursor/rules`) pointing at `SKILL.md`,
-      plus MCP client config for the same server.
-- [ ] **Cline** — plugin manifest wiring the MCP server; same surface.
-- [ ] **n8n** — reusable nodes: `Stew Search`, `Stew Fetch`, `Stew Tasting`.
+- [ ] **OpenCode**
+- [ ] **GitHub Copilot**
+- [ ] **Cursor**
+- [ ] **Claude Code**
+- [ ] **OpenAI Codex**
 - [ ] Adapter contract: all adapters share one protocol (search → verify →
       fetch → measure → report); only the surface differs.
 
