@@ -18,7 +18,7 @@ A Chinese doorway lives in [README.zh-CN.md](README.zh-CN.md).
 
 ## Table of contents
 
-- [Stew](#stew)
+- [🍲 Stew](#-stew)
   - [Table of contents](#table-of-contents)
   - [Why stews may work (even when garbled)](#why-stews-may-work-even-when-garbled)
   - [Design principles](#design-principles)
@@ -160,6 +160,4 @@ See [AGENTS.md](AGENTS.md) and each tool's `--help` for more.
 
 ## Inspiration
 
-The core idea for this repository — a pot that is never emptied, context that
-keeps compounding, and the notion that age itself can become a measurable
-feature — draws from [@joelhooks' post on X](https://x.com/joelhooks/status/2097173680795046087).
+The core idea for this repository is from [@joelhooks' post on X](https://x.com/joelhooks/status/2097173680795046087).
