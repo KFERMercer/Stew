@@ -135,6 +135,30 @@ python tools/summarize.py registry
 
 ## Definition of done for changes
 
-A change is done when `python tools/validate.py all` passes,
-`tools/summarize.py registry` produces no diff on `registry.yaml`,
-and no English file was renamed or degraded to Chinese (and vice versa).
+Checks are **path-scoped** — heavy pot validation only runs when
+pot-affecting paths are touched. This avoids wasting CI/local cycles on
+docs-only changes.
+
+### Trigger scope
+
+| Scope | Paths | Required gate |
+|---|---|---|
+| **pot-affecting** | `stews/**`, `registry.yaml`, `proposals/**`, `tastings/**`, `schema/**`, `tools/**` | `python tools/validate.py all` must pass **and** `python tools/summarize.py registry` produces no diff on `registry.yaml` |
+| **docs-only** | `README.md`, `README.zh-CN.md`, `CONTRIBUTING.md`, `GOVERNANCE.md`, `CONVENTIONS.md`, `SKILL.md`, `TODO.md`, `AGENTS.md`, `LICENSE`, `.github/ISSUE_TEMPLATE/**` | no pot validation required; only docs hygiene (no English file renamed/degraded to Chinese and vice versa) |
+| **mixed** | touches both scopes | full pot gate required |
+
+### Rules
+
+1. If a change touches **any** pot-affecting path (including `tools/validate.py`
+   or `schema/*.json` which define the gate itself), it is done only when
+   `python tools/validate.py all` passes and `registry.yaml` is drift-free
+   (`cp registry.yaml /tmp/before.yaml && python tools/summarize.py registry && diff -q /tmp/before.yaml registry.yaml`).
+2. If a change is **docs-only** (second row), it is done when docs hygiene
+   passes — no local `validate.py all` run is required.
+3. `python tools/validate.py proposal <dir>` / `tasting <file>` remain available
+   for fast local pre-checks of a single submission without running the whole pot.
+
+> Rationale: `validate.py all` is content-addressed (sha256), lineage-aware and
+> registry-consistent — expensive and meaningless when only markdown/issue
+> templates changed. Path scoping keeps the ACID invariants without taxing
+> every typo fix.
